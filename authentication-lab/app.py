@@ -7,7 +7,8 @@ config={"apiKey": "AIzaSyB5KrNO6drGs2OryII5jnSPtpSmqlQJsyU",
   "projectId": "cs-lab-dd1b4",
   "storageBucket": "cs-lab-dd1b4.appspot.com",
   "messagingSenderId": "883753514061",
-  "appId": "1:883753514061:web:08729c7b58823c05a9d804", "databaseURL": "https://cs-lab-dd1b4-default-rtdb.europe-west1.firebasedatabase.app/"  }
+  "appId": "1:883753514061:web:08729c7b58823c05a9d804", 
+  "databaseURL": "https://cs-lab-dd1b4-default-rtdb.europe-west1.firebasedatabase.app/"  }
 
 
 firebase=pyrebase.initialize_app(config)
@@ -41,8 +42,8 @@ def signup():
        try:
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
             UID=login_session['user']['localId']
-            user={"full_name":"full_name","username":"username","bio":"bio"}
-            db.child("Users").set(user)
+            user={"full_name":request.form["full_name"],"username":request.form["username"],"bio":request.form["bio"]}
+            db.child("Users").child(UID).set(user)
             return redirect(url_for('add_tweet'))
        except Exception as e:
            error = "Authentication failed"
