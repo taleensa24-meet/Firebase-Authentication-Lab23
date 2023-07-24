@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tweets</title>
+</head>
+<body>
+{% for i in tweets%}
+<li>{{tweets[i]["title"] }}</li>
+<li>{{tweets[i]['text'] }}</li>
+{% endfor %}
+</body>
+</html>
